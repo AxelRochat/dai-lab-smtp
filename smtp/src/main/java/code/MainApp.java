@@ -5,8 +5,6 @@ import java.util.List;
 
 public class MainApp {
     public static void main(String[] args) {
-        String victimsFilePath = "victims.json";
-        String messagesFilePath = "email.json";
         int numberOfGroups = 2; // Adjust as needed
         String smtpServerAddress = "localhost";
         int smtpPort = 1025;
@@ -14,8 +12,8 @@ public class MainApp {
         try {
             // Load configuration
             ConfigurationLoader configLoader = new ConfigurationLoader();
-            List<String> emails = configLoader.loadEmailsFromJson(victimsFilePath);
-            List<EmailMessage> messages = configLoader.loadMessagesFromJson(messagesFilePath);
+            List<String> emails = configLoader.loadVictimsFromJson();  
+            List<EmailMessage> messages = configLoader.loadMessagesFromJson();
 
             // Generate groups
             PrankGenerator prankGenerator = new PrankGenerator(emails, messages, numberOfGroups);

@@ -2,29 +2,56 @@ package code;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.File;
+
+import java.io.InputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ConfigurationLoader {
-    public List<String> loadEmailsFromJson(String filePath) throws IOException {
+
+    // Charge les adresses emails depuis le fichier victims.json
+    public List<String> loadVictimsFromJson() throws IOException {
+        // Charger le fichier JSON depuis le classpath
+        InputStream is = getClass().getClassLoader().getResourceAsStream("victims.json");
+        if (is == null) {
+            throw new IOException("Fichier victims.json introuvable dans le classpath.");
+        }
+
+        // Utilisation de ObjectMapper pour parser le JSON
         ObjectMapper mapper = new ObjectMapper();
-        JsonNode root = mapper.readTree(new File(filePath));
-        List<String> emails = new ArrayList<>();
-        root.get("victims").forEach(node -> emails.add(node.asText()));
-        return emails;
+        JsonNode rootNode = mapper.readTree(is);
+        List<String> victims = new ArrayList<>();
+
+        // Parcourir le JSON et ajouter les adresses email dans la liste
+        JsonNode victimsNode = rootNode.path("victims");
+        for (JsonNode victimNode : victimsNode) {
+            victims.add(victimNode.asText());
+        }
+        return victims;
     }
 
-    public List<EmailMessage> loadMessagesFromJson(String filePath) throws IOException {
+    // Charge les messages d'email depuis le fichier email.json
+    public List<EmailMessage> loadMessagesFromJson() throws IOException {
+        // Charger le fichier JSON depuis le classpath
+        InputStream is = getClass().getClassLoader().getResourceAsStream("email.json");
+        if (is == null) {
+            throw new IOException("Fichier email.json introuvable dans le classpath.");
+        }
+
+        // Utilisation de ObjectMapper pour parser le JSON
         ObjectMapper mapper = new ObjectMapper();
-        JsonNode root = mapper.readTree(new File(filePath));
+        JsonNode rootNode = mapper.readTree(is);
         List<EmailMessage> messages = new ArrayList<>();
-        root.get("email").forEach(emailNode -> {
-            String subject = emailNode.elements().next().get("subject").asText();
-            String body = emailNode.elements().next().get("body").asText();
+
+        // Parcourir le JSON et ajouter les messages dans la liste
+        JsonNode emailsNode = rootNode.path("email");
+        for (JsonNode emailNode : emailsNode) {
+            String subject = emailNode.path("subject").asText();
+            String body = emailNode.path("body").asText();
             messages.add(new EmailMessage(subject, body));
-        });
+        }
+
         return messages;
     }
 }

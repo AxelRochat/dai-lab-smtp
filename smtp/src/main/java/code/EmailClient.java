@@ -23,7 +23,7 @@ public class EmailClient {
     }
 
     public void sendEmail(String sender, List<String> recipients, EmailMessage message) throws IOException {
-        writer.println("HELLO localhost");
+        writer.println("HELO localhost");
         System.out.println(reader.readLine());
 
         writer.println("MAIL FROM:<" + sender + ">");
