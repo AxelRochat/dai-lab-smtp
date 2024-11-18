@@ -1,3 +1,4 @@
+package code;
 public class EmailMessage {
     private String subject;
     private String body;
