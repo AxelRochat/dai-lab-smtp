@@ -10,48 +10,42 @@ import java.util.List;
 
 public class ConfigurationLoader {
 
-    // Charge les adresses emails depuis le fichier victims.json
+    // Charger adresses emails depuis victims.json
     public List<String> loadVictimsFromJson() throws IOException {
-        // Charger le fichier JSON depuis le classpath
         InputStream is = getClass().getClassLoader().getResourceAsStream("victims.json");
         if (is == null) {
             throw new IOException("Fichier victims.json introuvable dans le classpath.");
         }
 
-        // Utilisation de ObjectMapper pour parser le JSON
         ObjectMapper mapper = new ObjectMapper();
         JsonNode rootNode = mapper.readTree(is);
         List<String> victims = new ArrayList<>();
 
-        // Parcourir le JSON et ajouter les adresses email dans la liste
         JsonNode victimsNode = rootNode.path("victims");
         for (JsonNode victimNode : victimsNode) {
             victims.add(victimNode.asText());
         }
+        System.out.println("debug " + victims);
         return victims;
     }
 
-    // Charge les messages d'email depuis le fichier email.json
+    // Charger messages d'email depuis email.json
     public List<EmailMessage> loadMessagesFromJson() throws IOException {
-        // Charger le fichier JSON depuis le classpath
         InputStream is = getClass().getClassLoader().getResourceAsStream("email.json");
         if (is == null) {
             throw new IOException("Fichier email.json introuvable dans le classpath.");
         }
-
-        // Utilisation de ObjectMapper pour parser le JSON
+    
         ObjectMapper mapper = new ObjectMapper();
-        JsonNode rootNode = mapper.readTree(is);
         List<EmailMessage> messages = new ArrayList<>();
-
-        // Parcourir le JSON et ajouter les messages dans la liste
-        JsonNode emailsNode = rootNode.path("email");
-        for (JsonNode emailNode : emailsNode) {
+    
+        JsonNode rootNode = mapper.readTree(is);
+        for (JsonNode emailNode : rootNode) {
             String subject = emailNode.path("subject").asText();
             String body = emailNode.path("body").asText();
             messages.add(new EmailMessage(subject, body));
         }
-
+    
         return messages;
     }
 }

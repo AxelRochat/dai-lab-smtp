@@ -37,6 +37,7 @@ public class EmailClient {
         writer.println("DATA");
         System.out.println(reader.readLine());
 
+        writer.println("Content-Type: text/plain; charset=UTF-8");
         writer.println("Subject: " + message.getSubject());
         writer.println("Content-Type: text/plain; charset=UTF-8");
         writer.println();

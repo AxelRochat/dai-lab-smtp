@@ -16,4 +16,8 @@ public class EmailMessage {
         return body;
     }
 
+    @Override
+    public String toString() {
+        return "Subject: " + subject + "\nBody: " + body;
+    }
 }
