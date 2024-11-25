@@ -10,7 +10,11 @@ import java.util.List;
 
 public class ConfigurationLoader {
 
-    // Charger adresses emails depuis victims.json
+    /**
+     * Loads email addresses from the victims.json file
+     * @return List of email addresses
+     * @throws IOException if the file cannot be found or read
+     */
     public List<String> loadVictimsFromJson() throws IOException {
         InputStream is = getClass().getClassLoader().getResourceAsStream("victims.json");
         if (is == null) {
@@ -25,11 +29,14 @@ public class ConfigurationLoader {
         for (JsonNode victimNode : victimsNode) {
             victims.add(victimNode.asText());
         }
-        System.out.println("debug " + victims);
         return victims;
     }
 
-    // Charger messages d'email depuis email.json
+    /**
+     * Loads email messages from the email.json file
+     * @return List of EmailMessage objects
+     * @throws IOException if the file cannot be found or read
+     */
     public List<EmailMessage> loadMessagesFromJson() throws IOException {
         InputStream is = getClass().getClassLoader().getResourceAsStream("email.json");
         if (is == null) {

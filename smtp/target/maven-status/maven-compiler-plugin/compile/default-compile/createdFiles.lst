@@ -1,6 +1,2 @@
-code\ConfigurationLoader.class
-code\EmailMessage.class
-code\Group.class
-code\MainApp.class
-code\EmailClient.class
-code\PrankGenerator.class
+email.json
+victims.json

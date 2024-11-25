@@ -3,7 +3,14 @@ package code;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Main application for generating and sending prank emails
+ */
 public class MainApp {
+    /**
+     * Entry point of the application
+     * @param args Command-line arguments (not used in this implementation)
+     */
     public static void main(String[] args) {
         int numberOfGroups = 2; // Adjust as needed
         String smtpServerAddress = "localhost";
