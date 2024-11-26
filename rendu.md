@@ -16,29 +16,29 @@ The tool does not send real pranks. It can be tested with a mock SMTP server to 
 To experiment without sending real emails, you can use a mock SMTP server. We recommend you to use the docker container : maildev.
 
 Use this command to launch the docker container 
-   docker run -d -p 1080:1080 -p 1025:1025 maildev/maildev
+`docker run -d -p 1080:1080 -p 1025:1025 maildev/maildev`
 
 You can try to connect to this mailbox on your browser http:/localhost:1080
 ## Configuring and running a prank email campaign
 
 Begin with cloning the project. For this open a command prompt in the folder where you want to copy the projet. And type this command :
-    git clone <urlGithubReposite>
+- `git clone <urlGithubReposite>`
 
 Then, open your favorite IDE and open the project. 
 Go to the root folder of this project, where the pom.xml is, and use this command 
-    mvn clean package
+- `mvn clean package`
 This command compiles the code and generates a .jar file
 
 After that, move into the folder nammed target. You can use this command.
-    cd target
+- `cd target`
 
 When you are in this folder, there is the .jar file. We want to execute it with this command :
-    java -jar <NameOfTheFile>.jar     (in my case it was java -jar .\smtp-1.0-SNAPSHOT.jar)
+- `java -jar <NameOfTheFile>.jar`     (in my case it was `java -jar .\smtp-1.0-SNAPSHOT.jar`)
     
 When this command is done, you'll see in your terminal that he has send a random email of the list to a random generated group.
 To check that everything is working, open your browser and go to http:/localhost:1080
 It should open a page where you can read the email that you've just send.
------------
+
 # Implementation
 
 ## 1. ConfigurationLoader
