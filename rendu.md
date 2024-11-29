@@ -2,27 +2,28 @@
 ## Overview
 
 This project is a Java-based prank email tool. It generates prank email campaigns by dividing participants into groups and sending prank messages to each group via an SMTP server.
-The tool does not send real pranks. It can be tested with a mock SMTP server to ensure safe experimentation. This projet is a labo for the HEIG, he has an educational goal.
+This tool is not supposed to send real pranks. It can be tested with a mock SMTP server to ensure safe experimentation. This projet is a labo for the HEIG, it has an educational goal.
 
 ## Features
 
 - Automatically generate groups for prank campaigns
 - Randomize email messages from a predefined list
-- Send emails through any SMTP server (mock or real)
+- Send emails through a SMTP server
 - Highly configurable and easy to set up
 - Easy to set and modify the list of messages and emails
 ## Setting Up the Mock SMTP Server
 
-To experiment without sending real emails, you can use a mock SMTP server. We recommend you to use the docker container : maildev.
+To experiment without sending real emails, you can use a mock SMTP server. We recommend you to use a docker container to start the mock server maildev.
 
-Use this command to launch the docker container 
+Use this command to run the docker container 
 `docker run -d -p 1080:1080 -p 1025:1025 maildev/maildev`
 
 You can try to connect to this mailbox on your browser http:/localhost:1080
 ## Configuring and running a prank email campaign
 
 Begin with cloning the project. For this open a command prompt in the folder where you want to copy the projet. And type this command :
-- `git clone <urlGithubReposite>`
+- `git clone <urlGithubRepo>`
+Change "urlGithubRepo" with the actual url.
 
 Then, open your favorite IDE and open the project. 
 Go to the root folder of this project, where the pom.xml is, and use this command 
