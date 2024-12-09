@@ -18,7 +18,7 @@ public class ConfigurationLoader {
     public List<String> loadVictimsFromJson() throws IOException {
         InputStream is = getClass().getClassLoader().getResourceAsStream("victims.json");
         if (is == null) {
-            throw new IOException("Fichier victims.json introuvable dans le classpath.");
+            throw new IOException("File victims.json not found in the classpath.");
         }
 
         ObjectMapper mapper = new ObjectMapper();
@@ -40,7 +40,7 @@ public class ConfigurationLoader {
     public List<EmailMessage> loadMessagesFromJson() throws IOException {
         InputStream is = getClass().getClassLoader().getResourceAsStream("email.json");
         if (is == null) {
-            throw new IOException("Fichier email.json introuvable dans le classpath.");
+            throw new IOException("File email.json not found in the classpath.");
         }
     
         ObjectMapper mapper = new ObjectMapper();
