@@ -133,3 +133,8 @@ The EmailMessage object contains:
 - Group 1: Sender: `alice@example.com`
 - Recipients: `["bob@example.com", "fred@exemple.com"]`
 - Sends emails using EmailClient
+
+# Advantages and disadvantages
+- "+" It's easy to add new persons to the email list and new messages to the message list
+- "+" Easy to hide the true email of the sender. You can write any address to be the sender
+- "-" Need coding knowledge to send emails, it's more difficult than outlook.
